@@ -20,7 +20,7 @@ var tooltip = d3.select(".container")
 var margin = {top: 15, right: 20, bottom: 30, left: 40},
     padding = 10,
     width = 900 - margin.left - margin.right,
-    height = 130 - margin.top - margin.bottom;
+    height = 230 - margin.top - margin.bottom;
     smallHeight = 57 - margin.top - margin.bottom;
 
 /* 
@@ -37,7 +37,7 @@ var xValue = function(d) {return format.parse(d['time']);}, // data -> value
     xAxis = d3.svg.axis().scale(xScale).orient("bottom");
 
 // setup y
-var yValue = function(d) { return d['speed'];}, // data -> value
+var yValue = function(d) { return 3.6*d['speed'];}, // data -> value
     yScale = d3.scale.linear().range([height, 0]), // value -> display
     yMap = function(d) { return yScale(yValue(d));}, // data -> display
     yAxis = d3.svg.axis().scale(yScale).orient("left");
@@ -58,6 +58,11 @@ var abs_accline;
 var gps_speed_timeseries_svg = d3.select(".container").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
+    .attr("class","graph")
+    .style({
+      'border': '2px solid',
+      'border-radius': '5px'
+    })
     .style('cursor','pointer')
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -73,6 +78,11 @@ gps_speed_timeseries_svg.append("clipPath")
 var network_speed_timeseries_svg = d3.select(".container").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", smallHeight + margin.top + margin.bottom)
+    .attr("class","graph")
+    .style({
+      'border': '2px solid',
+      'border-radius': '5px'
+    })
     .style('cursor','pointer')
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -88,6 +98,11 @@ network_speed_timeseries_svg.append("clipPath")
 var acc_timeseries_svg = d3.select(".container").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
+    .attr("class","graph")
+    .style({
+      'border': '2px solid',
+      'border-radius': '5px'
+    })
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 acc_timeseries_svg.append("clipPath")
@@ -174,7 +189,7 @@ d3.json("Outbound/Location_20140808_inicio_0647.txt", function(data) {
         return "Sensor: " + d.value['sensor']
           + "<br>Latitude: " + d.value['lat']
           +"<br>Longitude: " + d.value['lon']
-          +"<br>Speed: " + d.value['speed']
+          +"<br>Speed: " + d.value['speed']*3.6
           +"<br>Time: " + d.value['time'].substring(11,19);
       }        
     };
@@ -216,7 +231,9 @@ d3.json("Outbound/Location_20140808_inicio_0647.txt", function(data) {
       .attr("x", width)
       .attr("y", -6)
       .style("text-anchor", "end")
-      .text("Time");
+      .text("Time")
+      .style('font-size',"10px");
+
 
   network_speed_timeseries_svg.append("g")
       .attr("class", "x axis")
@@ -224,10 +241,11 @@ d3.json("Outbound/Location_20140808_inicio_0647.txt", function(data) {
       .call(xAxis)
     .append("text")
       .attr("class", "label")
-      .attr("x", width)
+      .attr("x", width) 
       .attr("y", -6)
       .style("text-anchor", "end")
-      .text("Time");
+      .text("Time")
+      .style('font-size',"10px");
 
   // y-axis
   gps_speed_timeseries_svg.append("g")
@@ -239,7 +257,8 @@ d3.json("Outbound/Location_20140808_inicio_0647.txt", function(data) {
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Speed (m/s)");
+      .text("Speed (km/hr)")
+      .style('font-size',"10px");
 
   // draw line connecting gps points
   gps_speed_timeseries_svg.append('path')
@@ -425,7 +444,8 @@ network_speed_timeseries_svg.append('rect')
         .attr("x", width)
         .attr("y", -6)
         .style("text-anchor", "end")
-        .text("Time");
+        .text("Time")
+        .style('font-size',"10px");
 
     // y-axis
     acc_timeseries_svg.append("g")
