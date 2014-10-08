@@ -9,7 +9,7 @@ var map = new google.maps.Map(d3.select("#map").node(), {
 });
 
 // TOOLTIP DIV
-var tooltip = d3.select("body")
+var tooltip = d3.select(".container")
   .append("div")
   .attr("class","tooltip")
   .style("position", "absolute")
@@ -55,7 +55,7 @@ var line = d3.svg.line()
 var abs_accline;
 
 // add the speed timeseries graph canvas to the body of the webpage
-var gps_speed_timeseries_svg = d3.select("body").append("svg")
+var gps_speed_timeseries_svg = d3.select(".container").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .style('cursor','pointer')
@@ -70,7 +70,7 @@ gps_speed_timeseries_svg.append("clipPath")
     })
 
 // add the network/wifi measurements
-var network_speed_timeseries_svg = d3.select("body").append("svg")
+var network_speed_timeseries_svg = d3.select(".container").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", smallHeight + margin.top + margin.bottom)
     .style('cursor','pointer')
@@ -85,7 +85,7 @@ network_speed_timeseries_svg.append("clipPath")
     })
 
 // add the acc sensor timeseries graph canvas to the body
-var acc_timeseries_svg = d3.select("body").append("svg")
+var acc_timeseries_svg = d3.select(".container").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
