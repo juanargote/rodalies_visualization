@@ -1,0 +1,36 @@
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.dot {
+  stroke: #000;
+}
+
+/* gps line */
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
+
+/* crosshair tooltip element */
+.focusLine {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 0.5px;
+}
+
+.focusCircle {
+    fill: lightgreen;
+    stroke: black;
+    stroke-width:2px;
+}
+
+.overlay {
+    fill: none;
+    stroke: none;
+    pointer-events: all;
+}
