@@ -501,7 +501,7 @@ network_speed_timeseries_svg.append('rect')
       .attr("clip-path", "url(#clip-acc)")
       .style({
         'fill': 'none',
-        'stroke': 'lightgreen',
+        'stroke': 'lightblue',
         'stroke-width': '2px',
       })
   });
